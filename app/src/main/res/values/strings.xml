@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Whatch_To_Movie_Application</string>
+    <string name="details">Details</string>
+    <string name="name_Film_1">Джентельмены</string>
 </resources>
