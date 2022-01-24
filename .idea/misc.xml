@@ -5,6 +5,9 @@
       <map>
         <entry key="..\:/What_Movie_To_Watch/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.3828125" />
         <entry key="..\:/What_Movie_To_Watch/app/src/main/res/drawable/ic_launcher_background.xml" value="0.3828125" />
+        <entry key="..\:/What_Movie_To_Watch/app/src/main/res/layout/activity_description_on_the_filmactivity.xml" value="0.22" />
+        <entry key="..\:/What_Movie_To_Watch/app/src/main/res/layout/activity_film1.xml" value="0.36666666666666664" />
+        <entry key="..\:/What_Movie_To_Watch/app/src/main/res/layout/activity_film2.xml" value="0.36666666666666664" />
         <entry key="..\:/What_Movie_To_Watch/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
         <entry key="..\:/What_Movie_To_Watch/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.3828125" />
       </map>
