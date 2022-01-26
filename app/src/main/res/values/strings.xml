@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">Whatch_To_Movie_Application</string>
     <string name="details">Details</string>
+    <string name="button_ready">Invite</string>
+    <string name="button_invite">Invite friend…</string>
+    <string name="invite_text_view">enter phone number</string>
     <string name="name_Film_1">Джентельмены</string>
     <string name="name_Film_2">Карты, деньги, два ствола</string>
     <string name="name_Film_3">Револьвер</string>

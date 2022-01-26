@@ -13,16 +13,14 @@ class FilmDescriptionAct : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.film_description)
 
-        val filmImage = findViewById<ImageView>(R.id.image_Film_1)
+        val imageFilm = findViewById<ImageView>(R.id.image_Film_1)
 
         val descriptionScreen = intent.getSerializableExtra(DESCRIPTION_FILM) as?
                 DescriptionScreen ?: error("Description is not found")
         //описание фильма
         findViewById<TextView>(R.id.description_Film_1).text = descriptionScreen.description
         //картинка фильма
-        //val imagePath = descriptionScreen.imagePath
-        //filmImage.setImageURI(Uri.parse(imagePath))
-        filmImage.setImageResource(descriptionScreen.imagePath)
+        imageFilm.setImageResource(descriptionScreen.imageId)
     }
 
 

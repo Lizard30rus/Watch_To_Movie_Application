@@ -4,6 +4,6 @@ import java.io.Serializable
 
 data class DescriptionScreen
     (val description : String,
-     val imagePath : Int
+     val imageId : Int
 ) : Serializable {
 }
