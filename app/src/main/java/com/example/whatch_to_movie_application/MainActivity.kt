@@ -1,85 +1,50 @@
 package com.example.whatch_to_movie_application
 
-import android.annotation.SuppressLint
-import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.widget.Toolbar
+import androidx.core.content.res.ResourcesCompat
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 class MainActivity : AppCompatActivity() {
-    @SuppressLint("ResourceAsColor")
+
+    private val recyclerView by lazy { findViewById<RecyclerView>(R.id.film_recycler) }
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        findViewById<Button>(R.id.invite_button).setOnClickListener {
-            val intent = Intent(this, InviteActivity::class.java)
-            startActivityForResult(intent, REQ_CODE)
-        }
-        val button1 = findViewById<Button>(R.id.details_Button_1)
-        val button2 = findViewById<Button>(R.id.details_Button_2)
-        val button3 = findViewById<Button>(R.id.details_Button_3)
-        val button4 = findViewById<Button>(R.id.details_Button_4)
-        val button5 = findViewById<Button>(R.id.details_Button_5)
 
-        val clickListener: View.OnClickListener = View.OnClickListener { view ->
-            when (view.id) {
-                R.id.details_Button_1 -> {
-                    val previewOfNewListTitle: String by lazy{
-                        resources.getString(R.string.description_Film_1) }
-                    val imageResourse = R.drawable.gentl_image
-                    findViewById<TextView>(R.id.name_Film_1).setTextColor(R.color.click)
-                    FilmDescriptionAct.start(this,
-                        DescriptionScreen(previewOfNewListTitle, imageResourse))
-                }
+        init()
 
-                R.id.details_Button_2 -> {
-                    val previewOfNewListTitle: String by lazy{
-                        resources.getString(R.string.description_Film_2) }
-                    val imageResourse = R.drawable.cards_cash_two_guns
-                    findViewById<TextView>(R.id.name_Film_2).setTextColor(R.color.click)
-                    FilmDescriptionAct.start(this,
-                        DescriptionScreen(previewOfNewListTitle, imageResourse))
-                }
-
-                R.id.details_Button_3 -> {
-                    val previewOfNewListTitle: String by lazy{
-                        resources.getString(R.string.description_Film_3) }
-                    val imageResourse = R.drawable.revolver
-                    findViewById<TextView>(R.id.name_Film_3).setTextColor(R.color.click)
-                    FilmDescriptionAct.start(this,
-                        DescriptionScreen(previewOfNewListTitle, imageResourse))
-                }
-
-                R.id.details_Button_4 -> {
-                    val previewOfNewListTitle: String by lazy{
-                        resources.getString(R.string.description_Film_4) }
-                    val imageResourse = R.drawable.big_score
-                    findViewById<TextView>(R.id.name_Film_4).setTextColor(R.color.click)
-                    FilmDescriptionAct.start(this,
-                        DescriptionScreen(previewOfNewListTitle, imageResourse))
-                }
-
-                R.id.details_Button_5 -> {
-                    val previewOfNewListTitle: String by lazy{
-                        resources.getString(R.string.description_Film_5) }
-                    val imageResourse = R.drawable.attraction
-                    findViewById<TextView>(R.id.name_Film_5).setTextColor(R.color.click)
-                    FilmDescriptionAct.start(this,
-                        DescriptionScreen(previewOfNewListTitle, imageResourse))
-                }
-            }
-
-        }
-        button1.setOnClickListener(clickListener)
-        button2.setOnClickListener(clickListener)
-        button3.setOnClickListener(clickListener)
-        button4.setOnClickListener(clickListener)
-        button5.setOnClickListener(clickListener)
     }
 
+
+    private fun init() {
+
+
+        val filmList =  mutableListOf(
+            FilmsItem(resources.getString(R.string.name_Film_1), R.drawable.gentl_image, resources.getString(R.string.description_Film_1)),
+            FilmsItem(resources.getString(R.string.name_Film_2), R.drawable.cards_cash_two_guns, resources.getString(R.string.description_Film_2)),
+            FilmsItem(resources.getString(R.string.name_Film_3), R.drawable.revolver, resources.getString(R.string.description_Film_3)),
+            FilmsItem(resources.getString(R.string.name_Film_4), R.drawable.big_score, resources.getString(R.string.description_Film_4)),
+            FilmsItem(resources.getString(R.string.name_Film_5), R.drawable.attraction, resources.getString(R.string.description_Film_5))
+        )
+
+
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.adapter = FilmsItemAdapter(filmList)
+
+    }
+
+
+/*
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == REQ_CODE)
         {
@@ -94,9 +59,13 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+ */
 
 
     private companion object {
         const val REQ_CODE = 234
     }
+
+
+
 }

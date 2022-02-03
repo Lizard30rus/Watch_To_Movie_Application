@@ -1,218 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".MainActivity">
 
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/white"
-    android:paddingTop="14dp"
-    android:paddingStart="12dp"
-    tools:context=".MainActivity"
-    tools:ignore="RtlSymmetry">
-
-
-    <Button
-        android:id="@+id/details_Button_5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/details"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="@+id/name_Film_5"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/film_recycler"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layoutManager="LinearLayoutManager"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+        tools:itemCount="5"
+        tools:listitem="@layout/item_films"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.924"
-        app:layout_constraintStart_toEndOf="@+id/icon_Film_5"
-        app:layout_constraintTop_toTopOf="@+id/name_Film_5"
-        app:layout_constraintVertical_bias="0.0"
-        tools:ignore="SmallSp" />
-
-    <TextView
-        android:id="@+id/name_Film_5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/name_Film_5"
-        android:textSize="14sp"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="@+id/icon_Film_5"
-        app:layout_constraintEnd_toStartOf="@+id/details_Button_2"
-        app:layout_constraintHorizontal_bias="0.307"
-        app:layout_constraintStart_toEndOf="@+id/icon_Film_5"
-        app:layout_constraintTop_toTopOf="@+id/icon_Film_5"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <Button
-        android:id="@+id/details_Button_4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/details"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="@+id/name_Film_4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.924"
-        app:layout_constraintStart_toEndOf="@+id/icon_Film_4"
-        app:layout_constraintTop_toTopOf="@+id/name_Film_4"
-        app:layout_constraintVertical_bias="0.0"
-        tools:ignore="SmallSp" />
-
-    <TextView
-        android:id="@+id/name_Film_4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/name_Film_4"
-        android:textSize="14sp"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="@+id/icon_Film_4"
-        app:layout_constraintEnd_toStartOf="@+id/details_Button_2"
-        app:layout_constraintHorizontal_bias="0.3"
-        app:layout_constraintStart_toEndOf="@+id/icon_Film_4"
-        app:layout_constraintTop_toTopOf="@+id/icon_Film_4"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/name_Film_3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/name_Film_3"
-        android:textSize="14sp"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="@+id/icon_Film_3"
-        app:layout_constraintEnd_toStartOf="@+id/details_Button_2"
-        app:layout_constraintHorizontal_bias="0.3"
-        app:layout_constraintStart_toEndOf="@+id/icon_Film_2"
-        app:layout_constraintTop_toTopOf="@+id/icon_Film_3"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <Button
-        android:id="@+id/details_Button_3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/details"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="@+id/name_Film_3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.924"
-        app:layout_constraintStart_toEndOf="@+id/icon_Film_3"
-        app:layout_constraintTop_toTopOf="@+id/name_Film_3"
-        app:layout_constraintVertical_bias="0.0"
-        tools:ignore="SmallSp" />
-
-    <Button
-        android:id="@+id/details_Button_2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/details"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="@+id/name_Film_2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.924"
-        app:layout_constraintStart_toEndOf="@+id/icon_Film_2"
-        app:layout_constraintTop_toTopOf="@+id/name_Film_2"
-        app:layout_constraintVertical_bias="0.0"
-        tools:ignore="SmallSp" />
-
-    <TextView
-        android:id="@+id/name_Film_2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/name_Film_2"
-        android:textSize="14sp"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="@+id/icon_Film_2"
-        app:layout_constraintEnd_toStartOf="@+id/details_Button_2"
-        app:layout_constraintHorizontal_bias="0.3"
-        app:layout_constraintStart_toEndOf="@+id/icon_Film_2"
-        app:layout_constraintTop_toTopOf="@+id/icon_Film_2"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <ImageView
-        android:id="@+id/icon_Film_4"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="40dp"
-        android:src="@drawable/big_score"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/icon_Film_3" />
-
-    <ImageView
-        android:id="@+id/icon_Film_5"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="40dp"
-        android:src="@drawable/attraction"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/icon_Film_4" />
-
-    <ImageView
-        android:id="@+id/icon_Film_3"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="40dp"
-        android:src="@drawable/revolver"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/icon_Film_2" />
-
-    <ImageView
-        android:id="@+id/icon_Film_2"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="40dp"
-        android:src="@drawable/cards_cash_two_guns"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/icon_Film_1" />
-
-    <ImageView
-        android:id="@+id/icon_Film_1"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="64dp"
-        android:src="@drawable/gentl_image"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/name_Film_1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="0dp"
-        android:layout_marginEnd="41dp"
-        android:text="@string/name_Film_1"
-        android:textSize="14sp"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="@+id/icon_Film_1"
-        app:layout_constraintEnd_toStartOf="@+id/details_Button_1"
-        app:layout_constraintHorizontal_bias="0.3"
-        app:layout_constraintStart_toEndOf="@+id/icon_Film_1"
-        app:layout_constraintTop_toTopOf="@+id/icon_Film_1"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <Button
-        android:id="@+id/details_Button_1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/details"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="@+id/name_Film_1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.924"
-        app:layout_constraintStart_toEndOf="@+id/icon_Film_1"
-        app:layout_constraintTop_toTopOf="@+id/name_Film_1"
-        app:layout_constraintVertical_bias="0.0"
-        tools:ignore="SmallSp" />
+        app:layout_constraintTop_toTopOf="parent"
+         />
 
     <Button
         android:id="@+id/invite_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
         android:text="@string/button_invite"
-        app:layout_constraintEnd_toEndOf="@+id/details_Button_1"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/details_Button_1"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
