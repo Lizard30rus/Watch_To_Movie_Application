@@ -13,22 +13,24 @@ class FilmDescriptionAct : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.film_description)
 
-        val imageFilm = findViewById<ImageView>(R.id.image_Film_1)
+        val imageFilm : ImageView = findViewById(R.id.image_film_description)
+        val imageId = intent.getIntExtra(IMAGE_FILM_ID, 100)
+        imageFilm.setImageResource(imageId)
 
-        val descriptionScreen = intent.getSerializableExtra(DESCRIPTION_FILM) as?
-                DescriptionScreen ?: error("Description is not found")
-        //описание фильма
-        findViewById<TextView>(R.id.description_Film_1).text = descriptionScreen.description
-        //картинка фильма
-        imageFilm.setImageResource(descriptionScreen.imageId)
+        val descriptionFilm : TextView = findViewById(R.id.description_film)
+        val description = intent.getStringExtra(DESCRIPTION_FILM)
+        descriptionFilm.text = description
+
+
+
     }
 
-
+/*
     companion object {
 
         const val DESCRIPTION_FILM = "description film"
 
-        fun start (context : Context, descriptionScreen: DescriptionScreen) {
+        fun start (context: Context, descriptionScreen: DescriptionScreen) {
 
             val intent = Intent(context, FilmDescriptionAct::class.java).apply {
 
@@ -39,6 +41,8 @@ class FilmDescriptionAct : AppCompatActivity() {
         }
 
     }
+
+ */
 
 
 

@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Whatch_To_Movie_Application">
         <activity
+            android:name=".FavoritesFilm"
+            android:exported="false" />
+        <activity
             android:name=".InviteActivity"
             android:exported="false" />
         <activity
