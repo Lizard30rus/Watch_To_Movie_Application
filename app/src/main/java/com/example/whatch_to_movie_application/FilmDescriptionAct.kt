@@ -25,27 +25,6 @@ class FilmDescriptionAct : AppCompatActivity() {
 
     }
 
-/*
-    companion object {
-
-        const val DESCRIPTION_FILM = "description film"
-
-        fun start (context: Context, descriptionScreen: DescriptionScreen) {
-
-            val intent = Intent(context, FilmDescriptionAct::class.java).apply {
-
-                putExtra(DESCRIPTION_FILM, descriptionScreen)
-            }
-
-            context.startActivity(intent)
-        }
-
-    }
-
- */
-
-
-
 }
 
 

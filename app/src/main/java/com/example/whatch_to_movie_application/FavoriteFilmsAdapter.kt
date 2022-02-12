@@ -21,7 +21,7 @@ class FavoriteFilmsAdapter (private val favoriteList : List<FilmsItem>,
         private val nameFilm : TextView = filmsItem.findViewById(R.id.FnameFilm)
         private val imageFilm : ImageView = filmsItem.findViewById(R.id.FimageFilm)
         private val buttonDetails : Button = filmsItem.findViewById(R.id.FbuttonDetails)
-        private val removeButton : Button = filmsItem.findViewById(R.id.removeFilm)
+
 
         @SuppressLint("ResourceAsColor")
         fun bind (filmsItem: FilmsItem, listener: FavoriteClickListener) {
@@ -32,11 +32,6 @@ class FavoriteFilmsAdapter (private val favoriteList : List<FilmsItem>,
                 nameFilm.setTextColor(R.color.click)
                 listener.onDetailsClick(filmsItem)
             }
-            removeButton.setOnClickListener {
-                listener.onRemoveClick(filmsItem)
-            }
-
-
         }
 
 
@@ -63,7 +58,5 @@ class FavoriteFilmsAdapter (private val favoriteList : List<FilmsItem>,
 
         interface  FavoriteClickListener {
             fun onDetailsClick (filmItem : FilmsItem)
-            fun onRemoveClick (filmItem : FilmsItem)
-
         }
 }

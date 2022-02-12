@@ -1,12 +1,16 @@
 package com.example.whatch_to_movie_application
 
 
+import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.widget.Button
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import androidx.core.content.res.ResourcesCompat
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -46,6 +50,8 @@ class MainActivity : AppCompatActivity(){
         }
 
         init()
+
+       // onBackPressed()
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -70,7 +76,7 @@ class MainActivity : AppCompatActivity(){
             R.drawable.attraction,
             resources.getString(R.string.description_Film_5)))
 
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        //recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = FilmsItemAdapter(filmList, object : FilmsItemAdapter.ItemsClickListener {
             override fun onDetailsClick(filmItem: FilmsItem) {
                 intent = Intent(this@MainActivity, FilmDescriptionAct::class.java).apply {
@@ -108,6 +114,11 @@ class MainActivity : AppCompatActivity(){
                 }
             }
         })
+
+        val divider = DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
+        ResourcesCompat.getDrawable(resources, R.drawable.black_line_5dp, theme)
+            ?.let { divider.setDrawable(it) }
+        recyclerView.addItemDecoration(divider)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -121,13 +132,23 @@ class MainActivity : AppCompatActivity(){
         }
         else if (requestCode == REQ_CODE_2) {
             if (resultCode == RESULT_OK) {
-                Toast.makeText(this, "It's working", Toast.LENGTH_SHORT).show()
                 favoriteFilmList = data?.getSerializableExtra(FavoritesFilm.RESULT_FAVORITE) as ArrayList<FilmsItem>
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data)
         }
     }
+
+    override fun onBackPressed() {
+        val dialofFragment = ExitDialog()
+        val manger = supportFragmentManager
+        dialofFragment.show(manger, "ExitDialog")
+    }
+
+
+
+
+
 
    companion object {
         const val IMAGE_FILM_ID = "image film id"

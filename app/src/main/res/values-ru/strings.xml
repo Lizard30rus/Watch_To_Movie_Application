@@ -11,6 +11,7 @@
     <string name="name_Film_4">Большой куш</string>
     <string name="name_Film_5">Притяжение</string>
     <string name="remove_from_favorites">удалить из избранного</string>
+    <string name="favorites">Избранное</string>
 
 
 </resources>

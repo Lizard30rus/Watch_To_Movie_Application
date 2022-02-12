@@ -49,14 +49,6 @@
                 android:text="@string/details"
                 tools:ignore="SpeakableTextPresentCheck" />
 
-            <Button
-                android:id="@+id/removeFilm"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:gravity="end"
-                android:text="@string/remove_from_favorites"
-                tools:ignore="SpeakableTextPresentCheck" />
 
 
         </LinearLayout>

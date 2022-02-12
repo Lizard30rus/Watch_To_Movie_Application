@@ -1,10 +1,12 @@
 package com.example.whatch_to_movie_application
 
 import android.content.Intent
+import android.content.res.Configuration
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Parcelable
+import android.view.View
 import android.widget.Button
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -33,6 +35,12 @@ class FavoritesFilm : AppCompatActivity() {
 
         init()
 
+//при нажатии приложение вылетает с IndexOutOfBoundsException, пустой список(?)
+        findViewById<Button>(R.id.remove_button).setOnClickListener {
+            filmList.removeAt(0)
+            recyclerViewF.adapter?.notifyItemRemoved(0)
+        }
+
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -42,23 +50,39 @@ class FavoritesFilm : AppCompatActivity() {
 
     private fun init() {
 
-        val filmList = intent.getSerializableExtra(FAVORITES_FILM) as ArrayList<FilmsItem>
-        //val filmList  = intent.getParcelableArrayListExtra<FilmsItem>(FAVORITES_FILM) as ArrayList<FilmsItem>
+        if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT)
+        {
+            val filmList = intent.getSerializableExtra(FAVORITES_FILM) as ArrayList<FilmsItem>
+            //val filmList  = intent.getParcelableArrayListExtra<FilmsItem>(FAVORITES_FILM) as ArrayList<FilmsItem>
 
-        recyclerViewF.layoutManager = LinearLayoutManager(this)
-        recyclerViewF.adapter = FavoriteFilmsAdapter(filmList, object : FavoriteFilmsAdapter.FavoriteClickListener{
-            override fun onDetailsClick(filmItem: FilmsItem) {
-                intent = Intent(this@FavoritesFilm, FilmDescriptionAct::class.java).apply {
-                    putExtra(DESCRIPTION_FILM,filmItem.descriptionFilmId)
-                    putExtra(IMAGE_FILM_ID, filmItem.imageId)
+            // recyclerViewF.layoutManager = LinearLayoutManager(this)
+            recyclerViewF.adapter = FavoriteFilmsAdapter(filmList, object : FavoriteFilmsAdapter.FavoriteClickListener{
+//При повороте экрана в описании фильма, вызванного из активити избранного возвращает ошибку NullPointerException,
+//Скорее всего нужно вызывать описание с передачей списка и возвращать его соответсвтенно в активити избранного
+                override fun onDetailsClick(filmItem: FilmsItem) {
+                    intent = Intent(this@FavoritesFilm, FilmDescriptionAct::class.java).apply {
+                        putExtra(DESCRIPTION_FILM,filmItem.descriptionFilmId)
+                        putExtra(IMAGE_FILM_ID, filmItem.imageId)
+                    }
+                    startActivity(intent)
                 }
-                startActivity(intent)
-            }
+            })
+        } else if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            val filmList = intent.getSerializableExtra(FAVORITES_FILM) as ArrayList<FilmsItem>
+            //val filmList  = intent.getParcelableArrayListExtra<FilmsItem>(FAVORITES_FILM) as ArrayList<FilmsItem>
 
-            override fun onRemoveClick(filmItem: FilmsItem) {
-                TODO("Not yet implemented")
-            }
-        })
+            // recyclerViewF.layoutManager = LinearLayoutManager(this)
+            recyclerViewF.adapter = FavoriteFilmsAdapter(filmList, object : FavoriteFilmsAdapter.FavoriteClickListener{
+                override fun onDetailsClick(filmItem: FilmsItem) {
+                    intent = Intent(this@FavoritesFilm, FilmDescriptionAct::class.java).apply {
+                        putExtra(DESCRIPTION_FILM,filmItem.descriptionFilmId)
+                        putExtra(IMAGE_FILM_ID, filmItem.imageId)
+                    }
+                    startActivity(intent)
+                }
+            })
+        }
+
     }
 
 
