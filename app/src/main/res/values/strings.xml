@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Whatch_To_Movie_Application</string>
     <string name="details">Details</string>
+    <string name="isFavorite">Favorite</string>
     <string name="button_ready">Invite</string>
     <string name="button_invite">Invite friend…</string>
     <string name="invite_text_view">enter phone number</string>
@@ -40,5 +41,6 @@
     </string>
     <string name="remove_from_favorites">remove from favorites</string>
     <string name="favorites">Favorites</string>
+    <string name="test">fdfd</string>
 
 </resources>

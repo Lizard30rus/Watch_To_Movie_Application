@@ -14,24 +14,43 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-
+/* заккоментированно 14.02.2022, начал работу с фрагментами
 const val IMAGE_FILM_ID = "image film id"
 const val DESCRIPTION_FILM = "description film"
 const val FAVORITES_FILM = "favorites film"
 const val SAVE_STATE = "save state"
+ */
 
 
 class MainActivity : AppCompatActivity(){
-
+/*заккоментированно 14.02.2022, начал работу с фрагментами
     private val recyclerView by lazy { findViewById<RecyclerView>(R.id.film_recycler) }
     private var favoriteFilmList = ArrayList<FilmsItem>()
     private var filmList = ArrayList<FilmsItem>()
 
+ */
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
+        val currentFragment = supportFragmentManager
+            .findFragmentById(R.id.fragment_container)
+
+        if (currentFragment == null)
+        {
+            val fragment = FilmListFragment.newInstance()
+            supportFragmentManager
+                .beginTransaction()
+                .replace(R.id.fragment_container, fragment)
+                .addToBackStack("string")
+                .commit()
+        }
+
+
+
+/*  заккоментированно 14.02.2022, начал работу с фрагментами
         savedInstanceState?.let {
             favoriteFilmList = it.getSerializable(SAVE_STATE) as ArrayList<FilmsItem>
         }
@@ -48,12 +67,14 @@ class MainActivity : AppCompatActivity(){
             startActivity(intent)
             //startActivityForResult(intent, REQ_CODE_2)
         }
-
         init()
-
-       // onBackPressed()
+ */
     }
 
+    override fun onBackPressed() {
+        supportFragmentManager.popBackStack()
+    }
+/* заккоментированно 14.02.2022, начал работу с фрагментами
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putSerializable(SAVE_STATE, favoriteFilmList)
@@ -141,8 +162,8 @@ class MainActivity : AppCompatActivity(){
 
     override fun onBackPressed() {
         val dialofFragment = ExitDialog()
-        val manger = supportFragmentManager
-        dialofFragment.show(manger, "ExitDialog")
+        val manager = supportFragmentManager
+        dialofFragment.show(manager, "ExitDialog")
     }
 
 
@@ -157,8 +178,7 @@ class MainActivity : AppCompatActivity(){
         const val REQ_CODE_2 = 123
     }
 
-
-
+     */
 }
 
 

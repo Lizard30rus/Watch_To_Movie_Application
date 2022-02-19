@@ -1,5 +1,5 @@
 package com.example.whatch_to_movie_application
-
+/*заккоментированно 14.02.2022, начал работу с фрагментами
 import android.content.Intent
 import android.content.res.Configuration
 import android.graphics.Color
@@ -94,4 +94,4 @@ class FavoritesFilm : AppCompatActivity() {
         const val REQ_CODE_1 = 234
         const val REQ_CODE_2 = 123
     }
-}
+  */

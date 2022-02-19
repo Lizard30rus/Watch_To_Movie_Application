@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
 
-
+/*заккоментированно 14.02.2022, начал работу с фрагментами
 class FilmsItemAdapter(private val filmList: List<FilmsItem>,
                        private val listener: ItemsClickListener) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -61,4 +61,5 @@ class FilmsItemAdapter(private val filmList: List<FilmsItem>,
     }
 
 
-}
+ */
+

@@ -7,7 +7,7 @@ import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
 
-
+/*заккоментированно 14.02.2022, начал работу с фрагментами
 class FilmDescriptionAct : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,6 +26,8 @@ class FilmDescriptionAct : AppCompatActivity() {
     }
 
 }
+
+ */
 
 
 

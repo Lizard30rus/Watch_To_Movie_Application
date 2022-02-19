@@ -11,7 +11,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-
+/*заккоментированно 14.02.2022, начал работу с фрагментами
 class FavoriteFilmsAdapter (private val favoriteList : List<FilmsItem>,
                             private val listener_2 : FavoriteClickListener) :
     RecyclerView.Adapter<RecyclerView.ViewHolder> () {
@@ -59,4 +59,4 @@ class FavoriteFilmsAdapter (private val favoriteList : List<FilmsItem>,
         interface  FavoriteClickListener {
             fun onDetailsClick (filmItem : FilmsItem)
         }
-}
+        */
