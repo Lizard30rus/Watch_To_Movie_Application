@@ -4,7 +4,7 @@ package com.example.whatch_to_movie_application
 import androidx.lifecycle.ViewModel
 
 
-class FilmListViewModel : ViewModel() {
+open class FilmListViewModel : ViewModel() {
 
     val filmList = mutableListOf<FilmsItem>()
 
@@ -24,5 +24,8 @@ class FilmListViewModel : ViewModel() {
         filmList.add( FilmsItem(R.string.name_Film_5,
             R.drawable.attraction,
             R.string.description_Film_5))
+
+        filmList[0].isFavorite = true
+        filmList[2].isFavorite = true
     }
 }

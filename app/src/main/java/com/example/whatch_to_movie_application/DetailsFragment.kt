@@ -33,16 +33,15 @@ class DetailsFragment: Fragment() {
 
         imageView = view.findViewById(R.id.description_image_film)
         descriptionFilm = view.findViewById(R.id.description_film)
-        nameFilm = view.findViewById(R.id.description_name_film)
+        //nameFilm = view.findViewById(R.id.description_name_film)
 
         parentFragmentManager.setFragmentResultListener("result",
         this,
         ){ _, result ->
             imageView.setImageResource(result.getInt("image"))
             descriptionFilm.text = resources.getString(result.getInt("description"))
-            nameFilm.text = resources.getString(result.getInt("name"))
+            //nameFilm.text = resources.getString(result.getInt("name"))
         }
-
 
         return view
     }

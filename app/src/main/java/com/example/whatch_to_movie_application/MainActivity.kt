@@ -1,18 +1,10 @@
 package com.example.whatch_to_movie_application
 
 
-import android.content.DialogInterface
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.widget.Button
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
-import androidx.core.content.res.ResourcesCompat
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import androidx.appcompat.app.AppCompatActivity
 
 /* заккоментированно 14.02.2022, начал работу с фрагментами
 const val IMAGE_FILM_ID = "image film id"
@@ -35,10 +27,9 @@ class MainActivity : AppCompatActivity(){
         setContentView(R.layout.activity_main)
 
 
-        val currentFragment = supportFragmentManager
+        val filmListFragment = supportFragmentManager
             .findFragmentById(R.id.fragment_container)
-
-        if (currentFragment == null)
+        if (filmListFragment == null)
         {
             val fragment = FilmListFragment.newInstance()
             supportFragmentManager
@@ -46,6 +37,16 @@ class MainActivity : AppCompatActivity(){
                 .replace(R.id.fragment_container, fragment)
                 .addToBackStack("string")
                 .commit()
+        }
+
+        val favoriteButton : Button = findViewById(R.id.favorites_button)
+        favoriteButton.setOnClickListener {
+                val fragment = FavoriteFilmListFragment()
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.fragment_container, fragment)
+                    .addToBackStack("string")
+                    .commit()
+            }
         }
 
 
@@ -71,9 +72,7 @@ class MainActivity : AppCompatActivity(){
  */
     }
 
-    override fun onBackPressed() {
-        supportFragmentManager.popBackStack()
-    }
+
 /* заккоментированно 14.02.2022, начал работу с фрагментами
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
@@ -161,9 +160,9 @@ class MainActivity : AppCompatActivity(){
     }
 
     override fun onBackPressed() {
-        val dialofFragment = ExitDialog()
+        val dialogFragment = ExitDialog()
         val manager = supportFragmentManager
-        dialofFragment.show(manager, "ExitDialog")
+        dialogFragment.show(manager, "ExitDialog")
     }
 
 
@@ -179,6 +178,6 @@ class MainActivity : AppCompatActivity(){
     }
 
      */
-}
+
 
 
