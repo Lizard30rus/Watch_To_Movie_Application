@@ -2,6 +2,7 @@ package com.example.whatch_to_movie_application
 
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -13,8 +14,8 @@ const val FAVORITES_FILM = "favorites film"
 const val SAVE_STATE = "save state"
  */
 
-
-class MainActivity : AppCompatActivity(){
+private const val TAG = "MainActivity"
+class MainActivity : AppCompatActivity(), FilmListFragment.Callbacks{
 /*заккоментированно 14.02.2022, начал работу с фрагментами
     private val recyclerView by lazy { findViewById<RecyclerView>(R.id.film_recycler) }
     private var favoriteFilmList = ArrayList<FilmsItem>()
@@ -49,6 +50,15 @@ class MainActivity : AppCompatActivity(){
             }
         }
 
+    override fun onDetailsFilmSelected(nameFilmId: Int) {
+        Log.d(TAG, "MainActivity.onDetailsFilmSelected: ${resources.getString(nameFilmId)}")
+
+        val fragment = DetailsFragment.newInstance(nameFilmId)
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, fragment)
+            .addToBackStack("string")
+            .commit()
+    }
 
 
 /*  заккоментированно 14.02.2022, начал работу с фрагментами

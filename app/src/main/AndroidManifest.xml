@@ -4,20 +4,12 @@
 
     <application
         android:allowBackup="true"
+        android:name=".FilmIntentApplication"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Whatch_To_Movie_Application">
-        <activity
-            android:name=".FavoritesFilm"
-            android:exported="false" />
-        <activity
-            android:name=".InviteActivity"
-            android:exported="false" />
-        <activity
-            android:name=".FilmDescriptionAct"
-            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

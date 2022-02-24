@@ -3,19 +3,18 @@ package com.example.whatch_to_movie_application
 import android.annotation.SuppressLint
 import android.content.res.Configuration
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.whatch_to_movie_application.viewmodels.FilmListViewModel
 
 private const val TAG_FAVORITE_FILMLIST = "FteFilmListFragment"
 
@@ -25,17 +24,8 @@ class FavoriteFilmListFragment: Fragment() {
 
     private var favoriteAdapter : FavoriteFilmAdapter? = null
 
-    private val favoriteFilmListViewModel : FavoriteFilmListViewModel by lazy {
-        ViewModelProviders.of(this).get(FavoriteFilmListViewModel::class.java)
-    }
-
-    private val filmListViewModel : FilmListViewModel by lazy {
-        ViewModelProviders.of(this).get(FilmListViewModel::class.java)
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.d(TAG_FAVORITE_FILMLIST, "Total films: ${favoriteFilmListViewModel.favoritefilmList.size}")
     }
 
     override fun onCreateView(
@@ -114,13 +104,7 @@ class FavoriteFilmListFragment: Fragment() {
     }
 
     private fun updateUI() {
-        for (i in filmListViewModel.filmList) {
-            if (i.isFavorite) {
-                favoriteFilmListViewModel.favoritefilmList.add(i)
-            }
-        }
-        favoriteAdapter = FavoriteFilmAdapter(favoriteFilmListViewModel.favoritefilmList)
-        favoriteFilmRecyclerView.adapter = favoriteAdapter
+
     }
 
     companion object {
