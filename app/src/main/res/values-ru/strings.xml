@@ -2,9 +2,9 @@
 <resources>
     <string name="app_name">Что посмотреть</string>
     <string name="details">Детали</string>
-    <string name="isFavorite">Избранное</string>
+    <string name="add_favorite">добавить в Избранное</string>
+    <string name="remove_favorite">удалить из Избранного</string>
     <string name="button_ready">Пригласить</string>
-    <string name="button_invite">Пригласить друга…</string>
     <string name="invite_text_view">введите номер</string>
     <string name="name_Film_1">Джентельмены</string>
     <string name="name_Film_2">Карты, деньги, два ствола</string>
@@ -12,8 +12,13 @@
     <string name="name_Film_4">Большой куш</string>
     <string name="name_Film_5">Притяжение</string>
     <string name="remove_from_favorites">удалить из избранного</string>
-    <string name="favorites">Избранное</string>
-    <string name="test">fdfd</string>
+    <!--titles-->
+    <string name="title_favorites">Избранное</string>
+    <string name="title_main">Главная</string>
+    <string name="title_invite">Пригласить друга…</string>
+
+    <string name="new_film"> новый фильм </string>
+    <string name="in_favorites">в Избранном!</string>
 
 
 </resources>

@@ -21,6 +21,8 @@ class FilmRepository private constructor(context: Context){
 
     fun getFilms() : LiveData<List<FilmsItem>> = filmDao.getFilms()
 
+    fun getFavoriteFilms(isFavorite : Boolean) : LiveData<List<FilmsItem>> = filmDao.getFavoriteFilms(isFavorite)
+
     fun getFilm(id: Int) : LiveData<FilmsItem?> = filmDao.getFilm(id)
 
     fun updateFilm(filmsItem: FilmsItem) {
@@ -28,7 +30,7 @@ class FilmRepository private constructor(context: Context){
             filmDao.updateFilm(filmsItem)
         }
     }
-
+//Будет использоваться в дальнейшем для добавления фильмов в БД
     fun addFilm(filmsItem: FilmsItem) {
         executor.execute {
             filmDao.addFilm(filmsItem)

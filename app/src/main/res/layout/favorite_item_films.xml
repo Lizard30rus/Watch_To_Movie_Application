@@ -48,18 +48,6 @@
                 android:gravity="end"
                 android:text="@string/details"
                 tools:ignore="SpeakableTextPresentCheck" />
-
-            <Button
-                android:id="@+id/button_remove_from_favorite"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:gravity="end"
-                android:text="@string/remove_from_favorites"
-                android:textSize="10dp"
-                tools:ignore="SpeakableTextPresentCheck" />
-
-
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

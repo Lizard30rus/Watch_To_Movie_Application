@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">Whatch_To_Movie_Application</string>
     <string name="details">Details</string>
-    <string name="isFavorite">Favorite</string>
+    <string name="add_favorite">add to Favorites</string>
+    <string name="remove_favorite">remove from Favorites</string>
     <string name="button_ready">Invite</string>
-    <string name="button_invite">Invite friend…</string>
     <string name="invite_text_view">enter phone number</string>
     <string name="name_Film_1">Джентельмены</string>
     <string name="name_Film_2">Карты, деньги, два ствола</string>
@@ -40,7 +40,12 @@
         землян с инопланетным разумом, состоявшемся в московском районе Чертаново.
     </string>
     <string name="remove_from_favorites">remove from favorites</string>
-    <string name="favorites">Favorites</string>
-    <string name="test">fdfd</string>
+    <!--titles-->
+    <string name="title_favorites">Favorites</string>
+    <string name="title_invite">Invite friend…</string>
+    <string name="title_main">Main</string>
+
+    <string name="new_film"> new film </string>
+    <string name="in_favorites">in Favorites!</string>
 
 </resources>

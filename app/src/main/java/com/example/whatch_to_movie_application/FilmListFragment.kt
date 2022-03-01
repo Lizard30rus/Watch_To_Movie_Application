@@ -4,10 +4,10 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.Configuration
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.*
+import android.view.*
+import android.widget.Button
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -15,8 +15,6 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.whatch_to_movie_application.viewmodels.FilmListViewModel
-
-private const val TAG_FILMLIST = "FilmListFragment"
 
 class FilmListFragment : Fragment() {
 
@@ -32,10 +30,14 @@ class FilmListFragment : Fragment() {
         ViewModelProviders.of(this).get(FilmListViewModel::class.java)
     }
 
-
     override fun onAttach(context: Context) {
         super.onAttach(context)
         callbacks = context as Callbacks?
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
     }
 
     override fun onCreateView(inflater: LayoutInflater,
@@ -75,20 +77,18 @@ class FilmListFragment : Fragment() {
         private val nameFilmView : TextView = itemView.findViewById(R.id.name_film)
         private val buttonDetailsView : Button = itemView.findViewById(R.id.details_button)
 
-        init {
-            buttonDetailsView.setOnClickListener {
-            //Вызов фрагмента детального просмотра фильма через Callbacks
-                callbacks?.onDetailsFilmSelected(film.nameFilmId)
-            }
-        }
-
         @SuppressLint("ResourceType")
         fun bind (film : FilmsItem)
         {
-            //this.film = film
+            this.film = film
             nameFilmView.text = resources.getString(film.nameFilmId)
             buttonDetailsView.text = resources.getString(R.string.details)
             imageFilmView.setImageResource(film.imageId)
+        }
+        init {
+            buttonDetailsView.setOnClickListener {
+                callbacks?.onDetailsFilmSelected(film.nameFilmId)
+            }
         }
     }
 
@@ -96,7 +96,6 @@ class FilmListFragment : Fragment() {
         : RecyclerView.Adapter<FilmHolder>() {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FilmHolder {
-
             val view = layoutInflater.inflate(R.layout.film_list_item, parent, false)
             return FilmHolder(view)
         }
@@ -111,10 +110,23 @@ class FilmListFragment : Fragment() {
         }
     }
 
-
     override fun onDetach() {
         super.onDetach()
         callbacks = null
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.fragment_film_list, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.new_film -> {
+                //Будет использоваться в дальнейшем для добавления фильмов в БД
+                true
+            } else -> return super.onOptionsItemSelected(item)
+        }
     }
 
     private fun updateUI(films: List<FilmsItem>) {

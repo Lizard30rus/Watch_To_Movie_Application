@@ -1,6 +1,7 @@
 package com.example.whatch_to_movie_application
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.res.Configuration
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,22 +11,30 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.whatch_to_movie_application.viewmodels.FilmListViewModel
-
-private const val TAG_FAVORITE_FILMLIST = "FteFilmListFragment"
+import com.example.whatch_to_movie_application.viewmodels.FavoriteFilmsViewModel
 
 class FavoriteFilmListFragment: Fragment() {
 
-    private lateinit var favoriteFilmRecyclerView : RecyclerView
+    interface Callbacks {
+        fun onDetailsFilmSelected(nameFilmId : Int)
+    }
 
+    private var callbacks: Callbacks? = null
+    private lateinit var favoriteFilmRecyclerView : RecyclerView
     private var favoriteAdapter : FavoriteFilmAdapter? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    private val favoriteListViewModel : FavoriteFilmsViewModel by lazy {
+        ViewModelProviders.of(this).get(FavoriteFilmsViewModel::class.java)
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        callbacks = context as Callbacks?
     }
 
     override fun onCreateView(
@@ -43,9 +52,20 @@ class FavoriteFilmListFragment: Fragment() {
             favoriteFilmRecyclerView.layoutManager = LinearLayoutManager(context)
         }
 
-        updateUI()
-
         return view
+    }
+
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        favoriteListViewModel.favoriteFilmListLiveData.observe(
+            viewLifecycleOwner,
+            Observer { favoriteFilms ->
+                favoriteFilms.let {
+                    updateUI(favoriteFilms)
+                }
+            }
+        )
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -56,25 +76,6 @@ class FavoriteFilmListFragment: Fragment() {
         private val imageFavoriteFilmView : ImageView = itemView.findViewById(R.id.favorite_image_film)
         private val nameFavoriteFilmView : TextView = itemView.findViewById(R.id.favorite_name_film)
         private val buttonDetailsFavoriteView : Button = itemView.findViewById(R.id.favorie_button_details)
-        private val buttonRemoveFromFavorite : Button = itemView.findViewById(R.id.button_remove_from_favorite)
-
-        init {
-            buttonDetailsFavoriteView.setOnClickListener {
-                parentFragmentManager.setFragmentResult("result", Bundle().apply {
-                    putInt("name", favoriteFilm.nameFilmId)
-                    putInt("description", favoriteFilm.descriptionFilmId)
-                    putInt("image", favoriteFilm.imageId)
-                })
-                parentFragmentManager.beginTransaction()
-                    .replace(R.id.fragment_container, DetailsFragment())
-                    .addToBackStack("string")
-                    .commit()
-            }
-            buttonRemoveFromFavorite.setOnClickListener {
-                favoriteFilm.isFavorite = false
-                favoriteAdapter?.notifyDataSetChanged()
-            }
-        }
 
         @SuppressLint("ResourceType")
         fun bind (favoriteFilm : FilmsItem) {
@@ -82,7 +83,11 @@ class FavoriteFilmListFragment: Fragment() {
             imageFavoriteFilmView.setImageResource(favoriteFilm.imageId)
             nameFavoriteFilmView.text = resources.getString(favoriteFilm.nameFilmId)
         }
-
+        init {
+            buttonDetailsFavoriteView.setOnClickListener {
+                callbacks?.onDetailsFilmSelected(favoriteFilm.nameFilmId)
+            }
+        }
     }
 
     private inner class FavoriteFilmAdapter (var favoriteFilms : List<FilmsItem>) : RecyclerView.Adapter<FavoriteFilmHolder>() {
@@ -103,10 +108,10 @@ class FavoriteFilmListFragment: Fragment() {
 
     }
 
-    private fun updateUI() {
-
+    private fun updateUI(favoriteFilms : List<FilmsItem>) {
+        favoriteAdapter = FavoriteFilmAdapter(favoriteFilms)
+        favoriteFilmRecyclerView.adapter = favoriteAdapter
     }
-
     companion object {
         fun newInstance() : FavoriteFilmListFragment{
             return FavoriteFilmListFragment()

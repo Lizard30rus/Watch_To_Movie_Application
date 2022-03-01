@@ -1,7 +1,6 @@
 package com.example.whatch_to_movie_application.database
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
@@ -24,6 +23,10 @@ interface FilmDAO {
 
     @Query("SELECT * FROM filmsItem WHERE nameFilmId=(:id)")
     fun getFilm(id: Int) : LiveData<FilmsItem?>
+
+    @Query("SELECT * FROM filmsitem WHERE isFavorite= (:check)")
+    fun getFavoriteFilms(check : Boolean) : LiveData<List<FilmsItem>>
+
 
     //Функции обновления базы данных
     @Update

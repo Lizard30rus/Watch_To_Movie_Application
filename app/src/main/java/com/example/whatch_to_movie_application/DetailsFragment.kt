@@ -3,12 +3,11 @@ package com.example.whatch_to_movie_application
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -33,6 +32,7 @@ class DetailsFragment: Fragment() {
         val nameFilmId: Int = arguments?.getInt(DESCRIPTION_FILM) as Int
         Log.d(TAG, "args bundle film ${resources.getString(nameFilmId)}")
         filmDetailsViewModel.loadFilm(nameFilmId)
+        setHasOptionsMenu(true)
     }
 
     @SuppressLint("CutPasteId", "ResourceType")
@@ -71,7 +71,6 @@ class DetailsFragment: Fragment() {
     }
 
     companion object {
-
        fun newInstance(nameFilmId : Int) : DetailsFragment {
            val args = Bundle().apply {
                putInt(DESCRIPTION_FILM, nameFilmId)
@@ -82,10 +81,29 @@ class DetailsFragment: Fragment() {
        }
     }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.film_description, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.add_favorites-> {
+                filmDetailsViewModel.filmLiveData.value?.isFavorite = true
+                Toast.makeText(context?.applicationContext, "${filmDetailsViewModel.filmLiveData.value?.nameFilmId} add to favorites!", Toast.LENGTH_SHORT).show()
+                true
+            }
+            R.id.remove_favorites -> {
+                filmDetailsViewModel.filmLiveData.value?.isFavorite = false
+                Toast.makeText(context?.applicationContext, "${filmDetailsViewModel.filmLiveData.value?.isFavorite} remove to favorites!", Toast.LENGTH_SHORT).show()
+                true
+            }
+            else -> return super.onOptionsItemSelected(item)
+        }
+    }
 
     override fun onStop() {
         super.onStop()
         filmDetailsViewModel.saveFilm(filmsItem)
     }
-
 }
