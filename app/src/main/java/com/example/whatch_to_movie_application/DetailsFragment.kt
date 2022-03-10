@@ -21,7 +21,6 @@ class DetailsFragment: Fragment() {
     private lateinit var filmsItem: FilmsItem
     private lateinit var imageView : ImageView
     private lateinit var descriptionFilm : TextView
-    private lateinit var isFavorite : CheckBox
     private val filmDetailsViewModel: FilmDetailsViewModel by lazy {
         ViewModelProviders.of(this).get(FilmDetailsViewModel::class.java)
     }
@@ -45,7 +44,6 @@ class DetailsFragment: Fragment() {
 
         imageView = view.findViewById(R.id.description_image_film)
         descriptionFilm = view.findViewById(R.id.description_film)
-        isFavorite = view.findViewById(R.id.is_favorite)
 
         return view
     }
@@ -67,7 +65,6 @@ class DetailsFragment: Fragment() {
     private fun updateUI() {
         imageView.setImageResource(filmsItem.imageId)
         descriptionFilm.text = resources.getString(filmsItem.descriptionFilmId)
-        isFavorite.isChecked = filmsItem.isFavorite
     }
 
     companion object {
@@ -90,12 +87,20 @@ class DetailsFragment: Fragment() {
         return when (item.itemId) {
             R.id.add_favorites-> {
                 filmDetailsViewModel.filmLiveData.value?.isFavorite = true
-                Toast.makeText(context?.applicationContext, "${filmDetailsViewModel.filmLiveData.value?.nameFilmId} add to favorites!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context?.applicationContext, " Film ${filmDetailsViewModel.filmLiveData.value?.nameFilmId?.let {
+                    resources.getString(
+                        it
+                    )
+                }} add to favorites!", Toast.LENGTH_SHORT).show()
                 true
             }
             R.id.remove_favorites -> {
                 filmDetailsViewModel.filmLiveData.value?.isFavorite = false
-                Toast.makeText(context?.applicationContext, "${filmDetailsViewModel.filmLiveData.value?.isFavorite} remove to favorites!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context?.applicationContext, "Film ${filmDetailsViewModel.filmLiveData.value?.nameFilmId?.let {
+                    resources.getString(
+                        it
+                    )
+                }} remove to favorites!", Toast.LENGTH_SHORT).show()
                 true
             }
             else -> return super.onOptionsItemSelected(item)

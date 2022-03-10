@@ -22,6 +22,8 @@ class MainActivity : AppCompatActivity(), FilmListFragment.Callbacks, FavoriteFi
 
         val navController = findNavController(R.id.head_container)
 
+
+
         val appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.film_list_fragment, R.id.favorite_film_list_fragment, R.id.invite_fragment
@@ -30,6 +32,8 @@ class MainActivity : AppCompatActivity(), FilmListFragment.Callbacks, FavoriteFi
 
         setupActionBarWithNavController(navController, appBarConfiguration)
         navigaionView.setupWithNavController(navController)
+
+
 
     }
 

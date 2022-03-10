@@ -47,5 +47,24 @@
 
     <string name="new_film"> new film </string>
     <string name="in_favorites">in Favorites!</string>
+    <string name="test_name_1" translatable="false"> Test Name 1</string>
+    <string name="test_name" translatable="false"> Test Name 1</string>
+    <string name="test_name_2" translatable="false"> Test Name 2</string>
+    <string name="test_name_3" translatable="false"> Test Name 3</string>
+    <string name="test_name_4" translatable="false"> Test Name 4</string>
+    <string name="test_name_5" translatable="false"> Test Name 5</string>
+    <string name="test_name_6" translatable="false"> Test Name 6</string>
+    <string name="test_name_7" translatable="false"> Test Name 7</string>
+    <string name="test_name_8" translatable="false"> Test Name 8</string>
+    <string name="test_name_9" translatable="false"> Test Name 9</string>
+    <string name="test_name_10" translatable="false"> Test Name 10</string>
+    <string name="test_name_11" translatable="false"> Test Name 11</string>
+    <string name="test_name_12" translatable="false"> Test Name 12</string>
+    <string name="test_name_13" translatable="false"> Test Name 13</string>
+    <string name="test_name_14" translatable="false"> Test Name 14</string>
+    <string name="test_name_15" translatable="false"> Test Name 15</string>
+    <string name="test_name_16" translatable="false"> Test Name 16</string>
+    <string name="test_name_17" translatable="false"> Test Name 17</string>
+    <string name="test_description" translatable="false"> Test Description</string>
 
 </resources>

@@ -31,6 +31,12 @@ class FilmRepository private constructor(context: Context){
         }
     }
 //Будет использоваться в дальнейшем для добавления фильмов в БД
+    fun addFilms(filmsItem: List<FilmsItem>) {
+        executor.execute {
+            filmDao.addFilms(filmsItem)
+        }
+    }
+
     fun addFilm(filmsItem: FilmsItem) {
         executor.execute {
             filmDao.addFilm(filmsItem)

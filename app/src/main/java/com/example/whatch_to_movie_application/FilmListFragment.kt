@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.Configuration
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.widget.Button
 import android.widget.ImageView
@@ -16,6 +17,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.whatch_to_movie_application.viewmodels.FilmListViewModel
 
+
+private const val TAG = "TAG"
 class FilmListFragment : Fragment() {
 
     interface Callbacks {
@@ -32,11 +35,13 @@ class FilmListFragment : Fragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
+        Log.d(TAG, "FilmListFragment on Attach")
         callbacks = context as Callbacks?
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Log.d(TAG, "FilmListFragment on Create")
         setHasOptionsMenu(true)
     }
 
@@ -53,6 +58,7 @@ class FilmListFragment : Fragment() {
         else {
             filmRecyclerView.layoutManager = LinearLayoutManager(context)
         }
+        Log.d(TAG, "FilmListFragment on CreateView")
 
         return view
     }
@@ -67,6 +73,7 @@ class FilmListFragment : Fragment() {
                 }
             }
         )
+        Log.d(TAG, "FilmListFragment on ViewCreated")
     }
 
     private inner class FilmHolder (view: View) : RecyclerView.ViewHolder(view) {
@@ -112,6 +119,7 @@ class FilmListFragment : Fragment() {
 
     override fun onDetach() {
         super.onDetach()
+        Log.d(TAG, "FilmListFragment on Detach")
         callbacks = null
     }
 
@@ -123,6 +131,28 @@ class FilmListFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.new_film -> {
+                val filmsList : List<FilmsItem> =
+                    listOf(
+                        FilmsItem(R.string.test_name_1, R.drawable.android, R.string.test_description),
+                        FilmsItem(R.string.test_name_2, R.drawable.android, R.string.test_description),
+                        FilmsItem(R.string.test_name_3, R.drawable.android, R.string.test_description),
+                        FilmsItem(R.string.test_name_4, R.drawable.android, R.string.test_description),
+                        FilmsItem(R.string.test_name_5, R.drawable.android, R.string.test_description),
+                        FilmsItem(R.string.test_name_6, R.drawable.android, R.string.test_description),
+                        FilmsItem(R.string.test_name_7, R.drawable.android, R.string.test_description),
+                        FilmsItem(R.string.test_name_8, R.drawable.android, R.string.test_description),
+                        FilmsItem(R.string.test_name_9, R.drawable.android, R.string.test_description),
+                        FilmsItem(R.string.test_name_10, R.drawable.android, R.string.test_description),
+                        FilmsItem(R.string.test_name_11, R.drawable.android, R.string.test_description),
+                        FilmsItem(R.string.test_name_12, R.drawable.android, R.string.test_description),
+                        FilmsItem(R.string.test_name_13, R.drawable.android, R.string.test_description),
+                        FilmsItem(R.string.test_name_14, R.drawable.android, R.string.test_description),
+                        FilmsItem(R.string.test_name_15, R.drawable.android, R.string.test_description),
+                        FilmsItem(R.string.test_name_16, R.drawable.android, R.string.test_description),
+                        FilmsItem(R.string.test_name_17, R.drawable.android, R.string.test_description)
+                    )
+                //val film =  FilmsItem(R.string.name_Film_4, R.drawable.android, R.string.test_description, false)
+                filmListViewModel.addFilms(filmsList)
                 //Будет использоваться в дальнейшем для добавления фильмов в БД
                 true
             } else -> return super.onOptionsItemSelected(item)
@@ -137,5 +167,16 @@ class FilmListFragment : Fragment() {
         fun newInstance() : FilmListFragment {
             return FilmListFragment()
         }
+
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.d(TAG, "FilmListFragment on Stop")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d(TAG, "FilmListFragment on Destroy")
     }
 }
