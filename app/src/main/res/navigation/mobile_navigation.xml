@@ -9,17 +9,29 @@
         android:id="@+id/film_list_fragment"
         android:name="com.example.whatch_to_movie_application.FilmListFragment"
         android:label="@string/title_main"
-        tools:layout="@layout/fragment_film_list" />
+        tools:layout="@layout/fragment_film_list" >
+        <action
+            android:id="@+id/action_film_list_fragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/favorite_film_list_fragment"
         android:name="com.example.whatch_to_movie_application.FavoriteFilmListFragment"
         android:label="@string/title_favorites"
-        tools:layout="@layout/fragment_favorite_film_list" />
+        tools:layout="@layout/fragment_favorite_film_list" >
+        <action
+            android:id="@+id/action_favorite_film_list_fragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/invite_fragment"
         android:name="com.example.whatch_to_movie_application.InviteFragment"
         android:label="@string/title_invite"
         tools:layout="@layout/fragment_invite" />
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="com.example.whatch_to_movie_application.DetailsFragment"
+        android:label="DetailsFragment" />
 </navigation>

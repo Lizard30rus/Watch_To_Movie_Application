@@ -21,7 +21,7 @@ import com.example.whatch_to_movie_application.viewmodels.FavoriteFilmsViewModel
 class FavoriteFilmListFragment: Fragment() {
 
     interface Callbacks {
-        fun onDetailsFilmSelected(nameFilmId : Int)
+        fun onDetailsFromFavoriteFilmSelected(nameFilmId : Int)
     }
 
     private var callbacks: Callbacks? = null
@@ -85,7 +85,7 @@ class FavoriteFilmListFragment: Fragment() {
         }
         init {
             buttonDetailsFavoriteView.setOnClickListener {
-                callbacks?.onDetailsFilmSelected(favoriteFilm.nameFilmId)
+                callbacks?.onDetailsFromFavoriteFilmSelected(favoriteFilm.nameFilmId)
             }
         }
     }

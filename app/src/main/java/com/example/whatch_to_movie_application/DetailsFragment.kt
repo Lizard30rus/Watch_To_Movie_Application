@@ -14,7 +14,6 @@ import androidx.lifecycle.ViewModelProviders
 import com.example.whatch_to_movie_application.viewmodels.FilmDetailsViewModel
 
 private const val TAG = "Details fragment"
-private const val DESCRIPTION_FILM = "film description"
 
 class DetailsFragment: Fragment() {
 
@@ -68,6 +67,8 @@ class DetailsFragment: Fragment() {
     }
 
     companion object {
+        const val DESCRIPTION_FILM = "film description"
+
        fun newInstance(nameFilmId : Int) : DetailsFragment {
            val args = Bundle().apply {
                putInt(DESCRIPTION_FILM, nameFilmId)
@@ -86,21 +87,46 @@ class DetailsFragment: Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.add_favorites-> {
-                filmDetailsViewModel.filmLiveData.value?.isFavorite = true
-                Toast.makeText(context?.applicationContext, " Film ${filmDetailsViewModel.filmLiveData.value?.nameFilmId?.let {
-                    resources.getString(
-                        it
-                    )
-                }} add to favorites!", Toast.LENGTH_SHORT).show()
+                if (filmDetailsViewModel.filmLiveData.value?.isFavorite == true) {
+                    Toast.makeText(context?.applicationContext, "Film ${filmDetailsViewModel.filmLiveData.value?.nameFilmId?.let {
+                        resources.getString(
+                            it
+                        )
+                    }} already in Favorites!", Toast.LENGTH_SHORT).show()
+                } else {
+                    filmDetailsViewModel.filmLiveData.value?.isFavorite = true
+                    Toast.makeText(
+                        context?.applicationContext, " Film ${
+                            filmDetailsViewModel.filmLiveData.value?.nameFilmId?.let {
+                                resources.getString(
+                                    it
+                                )
+                            }
+                        } add to favorites!", Toast.LENGTH_SHORT
+                    ).show()
+                }
                 true
             }
             R.id.remove_favorites -> {
-                filmDetailsViewModel.filmLiveData.value?.isFavorite = false
-                Toast.makeText(context?.applicationContext, "Film ${filmDetailsViewModel.filmLiveData.value?.nameFilmId?.let {
-                    resources.getString(
-                        it
-                    )
-                }} remove to favorites!", Toast.LENGTH_SHORT).show()
+                if (filmDetailsViewModel.filmLiveData.value?.isFavorite == false) {
+                    Toast.makeText(context?.applicationContext, "Film ${filmDetailsViewModel.filmLiveData.value?.nameFilmId?.let {
+                        resources.getString(
+                            it
+                        )
+                    }} and so not in Favorites!", Toast.LENGTH_SHORT).show()
+                }
+                else {
+                    filmDetailsViewModel.filmLiveData.value?.isFavorite = false
+                    Toast.makeText(
+                        context?.applicationContext, " Film ${
+                            filmDetailsViewModel.filmLiveData.value?.nameFilmId?.let {
+                                resources.getString(
+                                    it
+                                )
+                            }
+                        } remove from favorites!", Toast.LENGTH_SHORT
+                    ).show()
+                }
                 true
             }
             else -> return super.onOptionsItemSelected(item)

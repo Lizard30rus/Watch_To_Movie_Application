@@ -22,7 +22,7 @@ private const val TAG = "TAG"
 class FilmListFragment : Fragment() {
 
     interface Callbacks {
-        fun onDetailsFilmSelected(nameFilmId : Int)
+        fun onDetailsFromFilmListFilmSelected(nameFilmId : Int)
     }
 
     private var callbacks: Callbacks? = null
@@ -41,8 +41,28 @@ class FilmListFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        /*val filmlist = listOf(
+            FilmsItem(R.string.test_name,R.drawable.android, R.string.test_description),
+            FilmsItem(R.string.test_name_1,R.drawable.android, R.string.test_description),
+            FilmsItem(R.string.test_name_2,R.drawable.android, R.string.test_description),
+            FilmsItem(R.string.test_name_3,R.drawable.android, R.string.test_description),
+            FilmsItem(R.string.test_name_4,R.drawable.android, R.string.test_description),
+            FilmsItem(R.string.test_name_5,R.drawable.android, R.string.test_description),
+            FilmsItem(R.string.test_name_6,R.drawable.android, R.string.test_description),
+            FilmsItem(R.string.test_name_7,R.drawable.android, R.string.test_description),
+            FilmsItem(R.string.test_name_8,R.drawable.android, R.string.test_description),
+            FilmsItem(R.string.test_name_9,R.drawable.android, R.string.test_description),
+            FilmsItem(R.string.test_name_10,R.drawable.android, R.string.test_description),
+            FilmsItem(R.string.test_name_11,R.drawable.android, R.string.test_description),
+            FilmsItem(R.string.test_name_12,R.drawable.android, R.string.test_description),
+            FilmsItem(R.string.test_name_13,R.drawable.android, R.string.test_description),
+            FilmsItem(R.string.test_name_14,R.drawable.android, R.string.test_description),
+            FilmsItem(R.string.test_name_15,R.drawable.android, R.string.test_description),
+            FilmsItem(R.string.test_name_16,R.drawable.android, R.string.test_description),
+            FilmsItem(R.string.test_name_17,R.drawable.android, R.string.test_description),
+        )
+        filmListViewModel.addFilms(filmlist)*/
         Log.d(TAG, "FilmListFragment on Create")
-        setHasOptionsMenu(true)
     }
 
     override fun onCreateView(inflater: LayoutInflater,
@@ -88,13 +108,13 @@ class FilmListFragment : Fragment() {
         fun bind (film : FilmsItem)
         {
             this.film = film
-            nameFilmView.text = resources.getString(film.nameFilmId)
+            nameFilmView.text  =  resources.getString(film.nameFilmId)
             buttonDetailsView.text = resources.getString(R.string.details)
             imageFilmView.setImageResource(film.imageId)
         }
         init {
             buttonDetailsView.setOnClickListener {
-                callbacks?.onDetailsFilmSelected(film.nameFilmId)
+                callbacks?.onDetailsFromFilmListFilmSelected(film.nameFilmId)
             }
         }
     }
@@ -123,42 +143,6 @@ class FilmListFragment : Fragment() {
         callbacks = null
     }
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(R.menu.fragment_film_list, menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.new_film -> {
-                val filmsList : List<FilmsItem> =
-                    listOf(
-                        FilmsItem(R.string.test_name_1, R.drawable.android, R.string.test_description),
-                        FilmsItem(R.string.test_name_2, R.drawable.android, R.string.test_description),
-                        FilmsItem(R.string.test_name_3, R.drawable.android, R.string.test_description),
-                        FilmsItem(R.string.test_name_4, R.drawable.android, R.string.test_description),
-                        FilmsItem(R.string.test_name_5, R.drawable.android, R.string.test_description),
-                        FilmsItem(R.string.test_name_6, R.drawable.android, R.string.test_description),
-                        FilmsItem(R.string.test_name_7, R.drawable.android, R.string.test_description),
-                        FilmsItem(R.string.test_name_8, R.drawable.android, R.string.test_description),
-                        FilmsItem(R.string.test_name_9, R.drawable.android, R.string.test_description),
-                        FilmsItem(R.string.test_name_10, R.drawable.android, R.string.test_description),
-                        FilmsItem(R.string.test_name_11, R.drawable.android, R.string.test_description),
-                        FilmsItem(R.string.test_name_12, R.drawable.android, R.string.test_description),
-                        FilmsItem(R.string.test_name_13, R.drawable.android, R.string.test_description),
-                        FilmsItem(R.string.test_name_14, R.drawable.android, R.string.test_description),
-                        FilmsItem(R.string.test_name_15, R.drawable.android, R.string.test_description),
-                        FilmsItem(R.string.test_name_16, R.drawable.android, R.string.test_description),
-                        FilmsItem(R.string.test_name_17, R.drawable.android, R.string.test_description)
-                    )
-                //val film =  FilmsItem(R.string.name_Film_4, R.drawable.android, R.string.test_description, false)
-                filmListViewModel.addFilms(filmsList)
-                //Будет использоваться в дальнейшем для добавления фильмов в БД
-                true
-            } else -> return super.onOptionsItemSelected(item)
-        }
-    }
-
     private fun updateUI(films: List<FilmsItem>) {
         filmAdapter = FilmAdapter(films)
         filmRecyclerView.adapter = filmAdapter
@@ -170,7 +154,7 @@ class FilmListFragment : Fragment() {
 
     }
 
-    override fun onStop() {
+   /* override fun onStop() {
         super.onStop()
         Log.d(TAG, "FilmListFragment on Stop")
     }
@@ -178,5 +162,5 @@ class FilmListFragment : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         Log.d(TAG, "FilmListFragment on Destroy")
-    }
+    }*/
 }

@@ -4,6 +4,7 @@ package com.example.whatch_to_movie_application
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -13,16 +14,15 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 private const val TAG = "MainActivity"
 class MainActivity : AppCompatActivity(), FilmListFragment.Callbacks, FavoriteFilmListFragment.Callbacks{
 
+    private lateinit var navController : NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val navigaionView: BottomNavigationView = findViewById(R.id.nav_view)
+        val navigationView: BottomNavigationView = findViewById(R.id.bottom_nav_view)
 
-        val navController = findNavController(R.id.head_container)
-
-
+        navController = findNavController(R.id.head_container)
 
         val appBarConfiguration = AppBarConfiguration(
             setOf(
@@ -31,20 +31,31 @@ class MainActivity : AppCompatActivity(), FilmListFragment.Callbacks, FavoriteFi
         )
 
         setupActionBarWithNavController(navController, appBarConfiguration)
-        navigaionView.setupWithNavController(navController)
+        navigationView.setupWithNavController(navController)
 
 
 
     }
 
-    override fun onDetailsFilmSelected(nameFilmId: Int) {
+    override fun onDetailsFromFavoriteFilmSelected(nameFilmId: Int) {
         Log.d(TAG, "MainActivity.onDetailsFilmSelected: ${resources.getString(nameFilmId)}")
+        val bundle = Bundle().apply {
+            putInt(DetailsFragment.DESCRIPTION_FILM, nameFilmId)
+        }
+        navController.navigate(R.id.action_favorite_film_list_fragment_to_detailsFragment, bundle)
 
-        val fragment = DetailsFragment.newInstance(nameFilmId)
+      /*  val fragment = DetailsFragment.newInstance(nameFilmId)
         supportFragmentManager.beginTransaction()
             .replace(R.id.head_container, fragment)
             .addToBackStack("string")
-            .commit()
+            .commit()*/
+    }
+
+    override fun onDetailsFromFilmListFilmSelected(nameFilmId: Int) {
+        val bundle = Bundle().apply {
+            putInt(DetailsFragment.DESCRIPTION_FILM, nameFilmId)
+        }
+       navController.navigate(R.id.action_film_list_fragment_to_detailsFragment, bundle)
     }
 
     /*override fun onBackPressed() {

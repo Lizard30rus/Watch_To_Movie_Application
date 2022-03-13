@@ -47,6 +47,7 @@
 
     <string name="new_film"> new film </string>
     <string name="in_favorites">in Favorites!</string>
+
     <string name="test_name_1" translatable="false"> Test Name 1</string>
     <string name="test_name" translatable="false"> Test Name 1</string>
     <string name="test_name_2" translatable="false"> Test Name 2</string>
