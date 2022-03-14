@@ -12,7 +12,8 @@
         tools:layout="@layout/fragment_film_list" >
         <action
             android:id="@+id/action_film_list_fragment_to_detailsFragment"
-            app:destination="@id/detailsFragment" />
+            app:destination="@id/detailsFragment"
+            app:popUpToInclusive="false" />
     </fragment>
 
     <fragment
@@ -22,7 +23,8 @@
         tools:layout="@layout/fragment_favorite_film_list" >
         <action
             android:id="@+id/action_favorite_film_list_fragment_to_detailsFragment"
-            app:destination="@id/detailsFragment" />
+            app:destination="@id/detailsFragment"
+            app:popUpToInclusive="false" />
     </fragment>
 
     <fragment

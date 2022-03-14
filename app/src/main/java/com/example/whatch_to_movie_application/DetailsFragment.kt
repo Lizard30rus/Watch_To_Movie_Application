@@ -4,10 +4,7 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.*
-import android.widget.CheckBox
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -38,6 +35,7 @@ class DetailsFragment: Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?): View? {
+        Log.d(TAG, "Details onCreateView")
 
         val view = inflater.inflate(R.layout.film_description, container,false)
 
@@ -49,6 +47,7 @@ class DetailsFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        Log.d(TAG, "Details onCreateView")
         filmDetailsViewModel.filmLiveData.observe(
             viewLifecycleOwner,
             Observer { filmsItem ->
@@ -132,6 +131,7 @@ class DetailsFragment: Fragment() {
             else -> return super.onOptionsItemSelected(item)
         }
     }
+
 
     override fun onStop() {
         super.onStop()

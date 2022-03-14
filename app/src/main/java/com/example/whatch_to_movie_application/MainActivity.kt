@@ -3,6 +3,7 @@ package com.example.whatch_to_movie_application
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
@@ -23,7 +24,6 @@ class MainActivity : AppCompatActivity(), FilmListFragment.Callbacks, FavoriteFi
         val navigationView: BottomNavigationView = findViewById(R.id.bottom_nav_view)
 
         navController = findNavController(R.id.head_container)
-
         val appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.film_list_fragment, R.id.favorite_film_list_fragment, R.id.invite_fragment
@@ -44,11 +44,6 @@ class MainActivity : AppCompatActivity(), FilmListFragment.Callbacks, FavoriteFi
         }
         navController.navigate(R.id.action_favorite_film_list_fragment_to_detailsFragment, bundle)
 
-      /*  val fragment = DetailsFragment.newInstance(nameFilmId)
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.head_container, fragment)
-            .addToBackStack("string")
-            .commit()*/
     }
 
     override fun onDetailsFromFilmListFilmSelected(nameFilmId: Int) {
@@ -57,11 +52,5 @@ class MainActivity : AppCompatActivity(), FilmListFragment.Callbacks, FavoriteFi
         }
        navController.navigate(R.id.action_film_list_fragment_to_detailsFragment, bundle)
     }
-
-    /*override fun onBackPressed() {
-        val dialofFragment = ExitDialog()
-        val manger = supportFragmentManager
-        dialofFragment.show(manger, "ExitDialog")
-    }*/
 
 }
