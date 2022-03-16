@@ -3,9 +3,11 @@ package com.example.whatch_to_movie_application
 
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
 import android.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
+import androidx.navigation.NavOptions
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -50,7 +52,20 @@ class MainActivity : AppCompatActivity(), FilmListFragment.Callbacks, FavoriteFi
         val bundle = Bundle().apply {
             putInt(DetailsFragment.DESCRIPTION_FILM, nameFilmId)
         }
+        val navOptions = NavOptions.Builder()
        navController.navigate(R.id.action_film_list_fragment_to_detailsFragment, bundle)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when(item.itemId) {
+            android.R.id.home -> {
+                onBackPressed()
+                true
+            }
+            else -> {
+                return super.onOptionsItemSelected(item)
+            }
+        }
     }
 
 }
