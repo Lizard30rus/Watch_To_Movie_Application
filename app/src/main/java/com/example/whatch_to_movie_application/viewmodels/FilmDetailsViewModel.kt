@@ -5,8 +5,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
-import com.example.whatch_to_movie_application.FilmRepository
-import com.example.whatch_to_movie_application.FilmsItem
+import com.example.whatch_to_movie_application.data.l.entity.FilmsItem
+import com.example.whatch_to_movie_application.database.FilmRepository
+
 
 class FilmDetailsViewModel : ViewModel() {
 

@@ -2,8 +2,8 @@ package com.example.whatch_to_movie_application.viewmodels
 
 
 import androidx.lifecycle.ViewModel
-import com.example.whatch_to_movie_application.FilmRepository
-import com.example.whatch_to_movie_application.FilmsItem
+import com.example.whatch_to_movie_application.data.l.entity.FilmsItem
+import com.example.whatch_to_movie_application.database.FilmRepository
 
 
 open class FilmListViewModel : ViewModel() {
@@ -13,9 +13,5 @@ open class FilmListViewModel : ViewModel() {
 
     fun addFilms(films : List<FilmsItem>) {
         filmRepository.addFilms(films)
-    }
-
-    fun addFilm(film : FilmsItem) {
-        filmRepository.addFilm(film)
     }
 }

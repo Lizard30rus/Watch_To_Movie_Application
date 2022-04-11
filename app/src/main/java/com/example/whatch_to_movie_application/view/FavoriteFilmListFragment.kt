@@ -1,4 +1,4 @@
-package com.example.whatch_to_movie_application
+package com.example.whatch_to_movie_application.view
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -16,7 +16,11 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.example.whatch_to_movie_application.data.l.entity.FilmsItem
+import com.example.whatch_to_movie_application.R
 import com.example.whatch_to_movie_application.viewmodels.FavoriteFilmsViewModel
+
 
 class FavoriteFilmListFragment: Fragment() {
 
@@ -56,7 +60,8 @@ class FavoriteFilmListFragment: Fragment() {
     }
 
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
+ override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         favoriteListViewModel.favoriteFilmListLiveData.observe(
             viewLifecycleOwner,
@@ -68,8 +73,12 @@ class FavoriteFilmListFragment: Fragment() {
         )
     }
 
-    @SuppressLint("NotifyDataSetChanged")
-    private inner class FavoriteFilmHolder (view:View) : RecyclerView.ViewHolder(view) {
+
+
+ @SuppressLint("NotifyDataSetChanged")
+
+
+ private inner class FavoriteFilmHolder (view:View) : RecyclerView.ViewHolder(view) {
 
         private lateinit var favoriteFilm : FilmsItem
 
@@ -77,15 +86,22 @@ class FavoriteFilmListFragment: Fragment() {
         private val nameFavoriteFilmView : TextView = itemView.findViewById(R.id.favorite_name_film)
         private val buttonDetailsFavoriteView : Button = itemView.findViewById(R.id.favorie_button_details)
 
-        @SuppressLint("ResourceType")
-        fun bind (favoriteFilm : FilmsItem) {
-            this.favoriteFilm = favoriteFilm
-            imageFavoriteFilmView.setImageResource(favoriteFilm.imageId)
-            nameFavoriteFilmView.text = resources.getString(favoriteFilm.nameFilmId)
-        }
+     @SuppressLint("ResourceType")
+     fun bind (film : FilmsItem)
+     {
+         nameFavoriteFilmView.text  = film.nameFilm
+         buttonDetailsFavoriteView.text = resources.getString(R.string.details)
+
+         Glide.with(imageFavoriteFilmView.context)
+             .load(film.imageFilm)
+             .placeholder(R.drawable.ic_launcher_background)
+             .error(R.drawable.android)
+             .centerCrop()
+             .into(imageFavoriteFilmView)
+     }
         init {
             buttonDetailsFavoriteView.setOnClickListener {
-                callbacks?.onDetailsFromFavoriteFilmSelected(favoriteFilm.nameFilmId)
+                callbacks?.onDetailsFromFavoriteFilmSelected(favoriteFilm.id)
             }
         }
     }
@@ -108,10 +124,11 @@ class FavoriteFilmListFragment: Fragment() {
 
     }
 
-    private fun updateUI(favoriteFilms : List<FilmsItem>) {
+ private fun updateUI(favoriteFilms : List<FilmsItem>) {
         favoriteAdapter = FavoriteFilmAdapter(favoriteFilms)
         favoriteFilmRecyclerView.adapter = favoriteAdapter
     }
+
     companion object {
         fun newInstance() : FavoriteFilmListFragment{
             return FavoriteFilmListFragment()

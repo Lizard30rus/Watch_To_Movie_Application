@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/film_list_fragment"
-        android:name="com.example.whatch_to_movie_application.FilmListFragment"
+        android:name="com.example.whatch_to_movie_application.view.FilmListFragment"
         android:label="@string/title_main"
         tools:layout="@layout/fragment_film_list" >
         <action
@@ -18,7 +18,7 @@
 
     <fragment
         android:id="@+id/favorite_film_list_fragment"
-        android:name="com.example.whatch_to_movie_application.FavoriteFilmListFragment"
+        android:name="com.example.whatch_to_movie_application.view.FavoriteFilmListFragment"
         android:label="@string/title_favorites"
         tools:layout="@layout/fragment_favorite_film_list" >
         <action
@@ -29,11 +29,11 @@
 
     <fragment
         android:id="@+id/invite_fragment"
-        android:name="com.example.whatch_to_movie_application.InviteFragment"
+        android:name="com.example.whatch_to_movie_application.view.InviteFragment"
         android:label="@string/title_invite"
         tools:layout="@layout/fragment_invite" />
     <fragment
         android:id="@+id/detailsFragment"
-        android:name="com.example.whatch_to_movie_application.DetailsFragment"
+        android:name="com.example.whatch_to_movie_application.view.DetailsFragment"
         android:label="DetailsFragment" />
 </navigation>

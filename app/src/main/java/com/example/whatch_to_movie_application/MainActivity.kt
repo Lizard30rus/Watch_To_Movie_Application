@@ -4,18 +4,19 @@ package com.example.whatch_to_movie_application
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
-import android.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
-import androidx.navigation.NavOptions
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.example.whatch_to_movie_application.view.DetailsFragment
+import com.example.whatch_to_movie_application.view.FavoriteFilmListFragment
+import com.example.whatch_to_movie_application.view.FilmListFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 private const val TAG = "MainActivity"
-class MainActivity : AppCompatActivity(), FilmListFragment.Callbacks, FavoriteFilmListFragment.Callbacks{
+class MainActivity : AppCompatActivity(), FavoriteFilmListFragment.Callbacks, FilmListFragment.Callbacks {
 
     private lateinit var navController : NavController
 
@@ -34,12 +35,9 @@ class MainActivity : AppCompatActivity(), FilmListFragment.Callbacks, FavoriteFi
 
         setupActionBarWithNavController(navController, appBarConfiguration)
         navigationView.setupWithNavController(navController)
-
-
-
     }
 
-    override fun onDetailsFromFavoriteFilmSelected(nameFilmId: Int) {
+   override fun onDetailsFromFavoriteFilmSelected(nameFilmId: Int) {
         Log.d(TAG, "MainActivity.onDetailsFilmSelected: ${resources.getString(nameFilmId)}")
         val bundle = Bundle().apply {
             putInt(DetailsFragment.DESCRIPTION_FILM, nameFilmId)
@@ -48,11 +46,10 @@ class MainActivity : AppCompatActivity(), FilmListFragment.Callbacks, FavoriteFi
 
     }
 
-    override fun onDetailsFromFilmListFilmSelected(nameFilmId: Int) {
+    override fun onDetailsFromFilmListFilmSelected(id: Int) {
         val bundle = Bundle().apply {
-            putInt(DetailsFragment.DESCRIPTION_FILM, nameFilmId)
+            putInt(DetailsFragment.DESCRIPTION_FILM, id)
         }
-        val navOptions = NavOptions.Builder()
        navController.navigate(R.id.action_film_list_fragment_to_detailsFragment, bundle)
     }
 
@@ -67,5 +64,7 @@ class MainActivity : AppCompatActivity(), FilmListFragment.Callbacks, FavoriteFi
             }
         }
     }
+
+
 
 }

@@ -1,4 +1,4 @@
-package com.example.whatch_to_movie_application
+package com.example.whatch_to_movie_application.view
 
 import android.app.Dialog
 import android.os.Bundle

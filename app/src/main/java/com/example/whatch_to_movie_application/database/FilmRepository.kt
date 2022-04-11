@@ -1,12 +1,14 @@
-package com.example.whatch_to_movie_application
+package com.example.whatch_to_movie_application.database
 
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.room.Room
+import com.example.whatch_to_movie_application.data.l.entity.FilmsItem
 import com.example.whatch_to_movie_application.database.FilmDatabase
 import java.util.concurrent.Executors
 
 private const val DATABASE_NAME = "film_database"
+
 
 class FilmRepository private constructor(context: Context){
 

@@ -1,10 +1,12 @@
 package com.example.whatch_to_movie_application.viewmodels
 
 import androidx.lifecycle.ViewModel
-import com.example.whatch_to_movie_application.FilmRepository
+import com.example.whatch_to_movie_application.database.FilmRepository
+
 
 class FavoriteFilmsViewModel: ViewModel() {
 
     private val filmRepository = FilmRepository.get()
     val favoriteFilmListLiveData =  filmRepository.getFavoriteFilms(true)
+
 }
